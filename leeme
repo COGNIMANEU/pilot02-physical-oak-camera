@@ -1,0 +1,3 @@
+Paquete oficial: https://github.com/luxonis/depthai-ros
+Launch: https://github.com/luxonis/depthai-ros/blob/humble/depthai_ros_driver/launch/camera.launch.py
+Config: https://github.com/luxonis/depthai-ros/blob/humble/depthai_ros_driver/config/camera.yaml

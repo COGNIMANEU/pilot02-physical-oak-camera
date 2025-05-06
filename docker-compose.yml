@@ -1,0 +1,38 @@
+services:
+  camera_driver_oak:
+    build:
+      context: ./src
+      args:
+        ROS_DISTRO: humble
+    container_name: camera_driver_oak
+    networks:
+      - camera_net
+    environment:
+      - CONFIG_FILE=camera.yaml
+      - LAUNCH_FILE=camera.launch.py
+      - ROS_DISTRO=humble
+    volumes:
+      - ./config:/ws/src/depthai-ros/config
+      - ./launch:/ws/src/depthai-ros/launch
+    entrypoint:
+      - /bin/bash
+      - -c
+      - >
+        set -e &&
+        source /opt/ros/$ROS_DISTRO/setup.bash &&
+        source /ws/install/setup.bash &&
+        ros2 launch depthai_ros_driver $LAUNCH_FILE params_file:=/ws/src/depthai-ros/config/$CONFIG_FILE
+
+  test_runner:
+    build:
+      context: ./test
+    depends_on:
+      - camera_driver_oak
+    networks:
+      - camera_net
+    environment:
+      - HARDWARE_CONNECTED=false
+
+networks:
+  camera_net:
+    driver: bridge
