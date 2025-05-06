@@ -33,10 +33,10 @@ jobs:
     #     docker-compose --version  # Verify installation
 
     # 4. Build the Docker image
-    - name: Build the Docker image
-      run: |
-        cd src
-        docker build . --file Dockerfile --tag oak_camera_driver_image:latest
+    # - name: Build the Docker image
+    #   run: |
+    #     cd src
+    #     docker build . --file Dockerfile --tag oak_camera_driver_image:latest
 
     # 5. Set up environment variables (if needed, this can be uncommented)
     # - name: Set up environment variables
@@ -52,6 +52,7 @@ jobs:
     #     ROS_DISTRO: humble  # ROS distribution to be used in the Docker container
 
     # 7. Clean up (remove containers and images after test)
-    - name: Clean up
-      run: |
-        docker rmi oak_camera_driver_image:latest
+    # - name: Clean up
+    #   run: |
+    #     docker rmi oak_camera_driver_image:latest
+
